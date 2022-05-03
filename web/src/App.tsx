@@ -1,5 +1,9 @@
-function Button(props) {
-  return <button>{props.text}</button>
+interface ButtonProps {
+  text?: string;
+}
+
+function Button(props: ButtonProps) {
+  return <button>{props.text ?? 'Default'}</button>
 }
 
 function App() {
@@ -7,6 +11,7 @@ function App() {
     <div>
       <Button text="Enviar"/>
       <Button text="OK"/>
+      <Button/>
     </div>
   )
 }
