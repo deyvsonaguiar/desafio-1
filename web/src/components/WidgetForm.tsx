@@ -1,5 +1,45 @@
 import { CloseButton } from "./closeBurron";
 
+import bugImageUrl from '../assets/bug.svg'
+import ideaImageUrl from '../assets/idea.svg'
+import thoughtImageUrl from '../assets/thought.svg'
+
+const feedbackTypes = {
+    BUG: {
+        title: 'Problema',
+        image: {
+            source: bugImageUrl,
+            alt: 'Imagem de um inseto'
+        }
+    },
+    IDEA: {
+        title: 'Ideia',
+        image: {
+            source: ideaImageUrl,
+            alt: 'Imagem de uma lâmpada'
+        }
+    },
+    OTHER: {
+        title: 'Outro',
+        image: {
+            source: thoughtImageUrl,
+            alt: 'Imagem de uma nuvem pensante'
+        }
+    },
+
+}
+
+/** Vetor de objetos, acessado pela propriedade:
+ * 
+ *      //Object.entries(feedbackTypes) => 
+ * 
+ * [
+ * ['BUG', {...}],
+ * ['IDEA', {...}],
+ * ['THOUGHT', {...}]
+ * ]
+ */
+
 export function WidgetForm() {
     return (
         <div className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg
@@ -8,9 +48,17 @@ export function WidgetForm() {
                 <span className="text-xl leading-6">Deixe seu feedback</span>
                 <CloseButton />
             </header>
-            <p>
-                Hello World  
-            </p>
+            <div className="flex py-8 gap-2 w-full">
+
+                { Object.entries(feedbackTypes).map(([key, value]) => {
+                    return (
+                        <button key={key}>
+                            <img src={value.image.source} alt={value.image.alt} />
+                            <span>{value.title}</span>
+                        </button>
+                    )
+                })}
+            </div>
             <footer>
                 Feito com ♥ pela <a className="underline underline-offset-2" href="#">Rocketseat</a>
             </footer>
